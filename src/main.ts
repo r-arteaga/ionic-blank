@@ -1,12 +1,21 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-import { AppModule } from './app/app.module';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { PreloadAllModules, provideRouter, Routes, withPreloading } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
+
+import { appRoutes } from './app/app.routes';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+const providers = [
+  provideRouter(appRoutes, withPreloading(PreloadAllModules)),
+  importProvidersFrom(
+    IonicModule.forRoot({})
+  )
+];
+
+bootstrapApplication(AppComponent, { providers });
