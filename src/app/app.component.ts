@@ -9,7 +9,9 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
   // |                    |
   // +--------------------+
   standalone: true,
-  imports: [IonicModule],
+  imports: [
+    IonicModule
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
